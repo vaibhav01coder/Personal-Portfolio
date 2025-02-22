@@ -2,23 +2,18 @@ from flask import Flask
 import os
 import datetime
 import subprocess
-import getpass  # Alternative to os.getlogin()
+import getpass
 
 app = Flask(__name__)
 
 @app.route('/htop')
 def htop():
-    name = "Vivek Vaibhav"  # Replace with your actual name
+    name = "Vivek Vaibhav"
     username = "vivek"
-    # try:
-    #     username = getpass.getuser()  # Safer way to get username
-    # except Exception:
-    #     username = "Unknown"
-
-    ist_time = datetime.datetime.utcnow() + datetime.timedelta(hours=5, minutes=30)  # Convert UTC to IST
+    ist_time = datetime.datetime.utcnow() + datetime.timedelta(hours=5, minutes=30) 
     server_time = ist_time.strftime("%Y-%m-%d %H:%M:%S IST")
 
-    top_output = subprocess.getoutput("top -b -n 1 | head -20")  # Run 'top' command
+    top_output = subprocess.getoutput("top -b -n 1 | head -20") 
 
     return f"""
     <h1>HTOP Endpoint</h1>
